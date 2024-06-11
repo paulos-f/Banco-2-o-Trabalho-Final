@@ -81,3 +81,73 @@ tabelas:
 	tipo sinistro
 		id pk
 		desc 
+
+
+### 11/06/2024
+
+termino das tabelas:
+
+	
+	Table pessoa {
+	  cpf varchar(11) [primary key]
+	  nome varchar(50)
+	  sexo char
+	  dt_nascimento date
+	}
+	
+	Table cliente {
+	  cod_cliente integer [primary key]
+	  cpf varchar(11)
+	  dt_cadastro date
+	  num_contato varchar(13)
+	  email varchar(100)
+	  endereco varchar(100)
+	}
+	
+	Table modelo{
+	  cod_modelo integer [primary key]
+	  nm_modelo varchar(25)
+	  nm_marca varchar(15)
+	}
+	
+	Table dispositivo {
+	  cod_dispositivo integer [primary key]
+	  cod_modelo integer
+	  cod_cliente integer
+	}
+	
+	table plano{
+	  cod_plano integer [primary key]
+	  desc_plano varchar(100)
+	  valor float
+	}
+	
+	table seguro{
+	  cod_seguro integer [primary key]
+	  cod_cliente integer
+	  dt_inicio date
+	  dt_fim date
+	  cod_plano integer
+	}
+	
+	table sinistro{
+	  cod_sinistro integer [primary key]
+	  cod_dispositivo integer
+	  dt_sinistro date
+	  tp_sinistro varchar(100)
+	}
+	
+	table avaliacao{
+	  cod_avaliacao integer [primary key]
+	  cod_sinistro intereger
+	  desc_avaliacao varchar(200)
+	  status varchar(10)
+	}
+	
+	ref: pessoa.cpf > cliente.cpf
+	Ref: cliente.cod_cliente > dispositivo.cod_cliente 
+	ref: modelo.cod_modelo > dispositivo.cod_modelo
+	ref: dispositivo.cod_dispositivo > sinistro.cod_dispositivo
+	ref: sinistro.cod_sinistro > avaliacao.cod_sinistro
+	ref: cliente.cod_cliente > seguro.cod_cliente
+	ref: plano.cod_plano > seguro.cod_plano
