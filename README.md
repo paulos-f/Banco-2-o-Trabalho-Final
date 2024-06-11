@@ -151,3 +151,5 @@ termino das tabelas:
 	ref: sinistro.cod_sinistro > avaliacao.cod_sinistro
 	ref: cliente.cod_cliente > seguro.cod_cliente
 	ref: plano.cod_plano > seguro.cod_plano
+
+![Alt text](modelo_fisico.png)
