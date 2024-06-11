@@ -7,6 +7,62 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model Pessoas {
-  cpf String @unique
+model pessoa {
+  cpf           String   @unique
+  nome          String
+  sexo          String
+  dt_nascimento DateTime
 }
+
+model cliente {
+  cod_cliente   String @unique
+  cpf           String
+  dt_nascimento DateTime
+  num_contato   String
+  email         String
+  endereco      String
+
+}
+
+model modelo{
+  cod_modelo  Int @unique
+  nm_modelo   String
+  nm_marca    String
+}
+
+model dispositivo{
+
+  cod_dispositivo Int @unique
+  cod_modelo      Int
+  cod_cliente     Int
+}
+
+model plano{
+  cod_plano     Int @unique
+  desc_plano    String
+  valor         Float
+}
+
+model seguro{
+  cod_seguro    Int  @unique
+  cod_cliente   Int
+  dt_inicio     DateTime
+  dt_fim        DateTime
+  cod_plano     Int
+}
+
+model sinistro{
+  cod_sinistro      Int @unique
+  cod_dispositivo   Int
+  dt_sinistro       DateTime
+  tp_sinistro       String
+}
+
+model avaliacao{
+  cod_avaliacao   Int @unique
+  cod_sinistro    Int
+  desc_avaliacao  String
+  status          String
+}
+
+
