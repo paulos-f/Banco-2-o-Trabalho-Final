@@ -1,0 +1,84 @@
+CREATE TABLE [pessoa] (
+  [cpf] varchar(11) PRIMARY KEY,
+  [nome] varchar(50),
+  [sexo] char,
+  [dt_nascimento] date
+)
+GO
+
+CREATE TABLE [cliente] (
+  [cod_cliente] integer PRIMARY KEY,
+  [cpf] varchar(11),
+  [dt_cadastro] date,
+  [num_contato] varchar(13),
+  [email] varchar(100),
+  [endereco] varchar(100)
+)
+GO
+
+CREATE TABLE [modelo] (
+  [cod_modelo] integer PRIMARY KEY,
+  [nm_modelo] varchar(25),
+  [nm_marca] varchar(15)
+)
+GO
+
+CREATE TABLE [dispositivo] (
+  [cod_dispositivo] integer PRIMARY KEY,
+  [cod_modelo] integer,
+  [cod_cliente] integer
+)
+GO
+
+CREATE TABLE [plano] (
+  [cod_plano] integer PRIMARY KEY,
+  [desc_plano] varchar(100),
+  [valor] float
+)
+GO
+
+CREATE TABLE [seguro] (
+  [cod_seguro] integer PRIMARY KEY,
+  [cod_cliente] integer,
+  [dt_inicio] date,
+  [dt_fim] date,
+  [cod_plano] integer
+)
+GO
+
+CREATE TABLE [sinistro] (
+  [cod_sinistro] integer PRIMARY KEY,
+  [cod_dispositivo] integer,
+  [dt_sinistro] date,
+  [tp_sinistro] varchar(100)
+)
+GO
+
+CREATE TABLE [avaliacao] (
+  [cod_avaliacao] integer PRIMARY KEY,
+  [cod_sinistro] intereger,
+  [desc_avaliacao] varchar(200),
+  [status] varchar(10)
+)
+GO
+
+ALTER TABLE [pessoa] ADD FOREIGN KEY ([cpf]) REFERENCES [cliente] ([cpf])
+GO
+
+ALTER TABLE [cliente] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [dispositivo] ([cod_cliente])
+GO
+
+ALTER TABLE [modelo] ADD FOREIGN KEY ([cod_modelo]) REFERENCES [dispositivo] ([cod_modelo])
+GO
+
+ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [sinistro] ([cod_dispositivo])
+GO
+
+ALTER TABLE [sinistro] ADD FOREIGN KEY ([cod_sinistro]) REFERENCES [avaliacao] ([cod_sinistro])
+GO
+
+ALTER TABLE [cliente] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [seguro] ([cod_cliente])
+GO
+
+ALTER TABLE [plano] ADD FOREIGN KEY ([cod_plano]) REFERENCES [seguro] ([cod_plano])
+GO
