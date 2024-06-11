@@ -1,64 +1,64 @@
 CREATE TABLE [pessoa] (
-  [cpf] varchar(11) PRIMARY KEY,
-  [nome] varchar(50),
+  [cpf] varchar(11) PRIMARY KEY not null,
+  [nome] varchar(50) not null,
   [sexo] char,
-  [dt_nascimento] date
+  [dt_nascimento] date not null
 )
 GO
 
 CREATE TABLE [cliente] (
-  [cod_cliente] integer PRIMARY KEY,
-  [cpf] varchar(11),
-  [dt_cadastro] date,
-  [num_contato] varchar(13),
+  [cod_cliente] integer PRIMARY KEY not null,
+  [cpf] varchar(11) not null,
+  [dt_cadastro] date not null,
+  [num_contato] varchar(13) not null,
   [email] varchar(100),
   [endereco] varchar(100)
 )
 GO
 
 CREATE TABLE [modelo] (
-  [cod_modelo] integer PRIMARY KEY,
-  [nm_modelo] varchar(25),
-  [nm_marca] varchar(15)
+  [cod_modelo] integer PRIMARY KEY not null,
+  [nm_modelo] varchar(25) not null,
+  [nm_marca] varchar(15) not null
 )
 GO
 
 CREATE TABLE [dispositivo] (
-  [cod_dispositivo] integer PRIMARY KEY,
-  [cod_modelo] integer,
-  [cod_cliente] integer
+  [cod_dispositivo] integer PRIMARY KEY not null,
+  [cod_modelo] integer not null,
+  [cod_cliente] integer not null
 )
 GO
 
 CREATE TABLE [plano] (
-  [cod_plano] integer PRIMARY KEY,
+  [cod_plano] integer PRIMARY KEY not null,
   [desc_plano] varchar(100),
-  [valor] float
+  [valor] float not null
 )
 GO
 
 CREATE TABLE [seguro] (
-  [cod_seguro] integer PRIMARY KEY,
-  [cod_cliente] integer,
-  [dt_inicio] date,
-  [dt_fim] date,
-  [cod_plano] integer
+  [cod_seguro] integer PRIMARY KEY not null,
+  [cod_cliente] integer not null,
+  [dt_inicio] date not null,
+  [dt_fim] date not null,
+  [cod_plano] integer not null
 )
 GO
 
 CREATE TABLE [sinistro] (
-  [cod_sinistro] integer PRIMARY KEY,
-  [cod_dispositivo] integer,
-  [dt_sinistro] date,
-  [tp_sinistro] varchar(100)
+  [cod_sinistro] integer PRIMARY KEY not null,
+  [cod_dispositivo] integer not null,
+  [dt_sinistro] date not null,
+  [tp_sinistro] varchar(100) not null
 )
 GO
 
 CREATE TABLE [avaliacao] (
-  [cod_avaliacao] integer PRIMARY KEY,
-  [cod_sinistro] intereger,
+  [cod_avaliacao] integer PRIMARY KEY not null,
+  [cod_sinistro] integer not null,
   [desc_avaliacao] varchar(200),
-  [status] varchar(10)
+  [status] varchar(10) not null
 )
 GO
 
