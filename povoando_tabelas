@@ -1,0 +1,108 @@
+INSERT INTO pessoa (cpf, nome, sexo, dt_nascimento) VALUES 
+('12345678901', 'João Silva', 'M', '1990-05-15'),
+('23456789012', 'Maria Santos', 'F', '1985-09-23'),
+('34567890123', 'Carlos Oliveira', 'M', '1982-11-10'),
+('45678901234', 'Ana Souza', 'F', '1995-03-20'),
+('56789012345', 'Pedro Ferreira', 'M', '1978-07-30'),
+('67890123456', 'Juliana Lima', 'F', '1989-12-05'),
+('78901234567', 'Marcos Costa', 'M', '1987-04-18'),
+('89012345678', 'Fernanda Oliveira', 'F', '1992-08-25'),
+('90123456789', 'Lucas Pereira', 'M', '1980-06-12'),
+('01234567890', 'Camila Almeida', 'F', '1998-01-28');
+
+
+select * from pessoa
+
+
+INSERT INTO cliente (cod_cliente, cpf, dt_cadastro, num_contato, email, endereco) VALUES 
+(1, '12345678901', '2023-02-10', '999999999', 'joao@email.com', 'Rua A, 123'),
+(2, '23456789012', '2022-07-05', '888888888', 'maria@email.com', 'Rua B, 456'),
+(3, '34567890123', '2024-01-20', '777777777', 'carlos@email.com', 'Rua C, 789'),
+(4, '45678901234', '2023-11-15', '666666666', 'ana@email.com', 'Rua D, 321'),
+(5, '56789012345', '2022-05-30', '555555555', 'pedro@email.com', 'Rua E, 654'),
+(6, '67890123456', '2023-09-18', '444444444', 'juliana@email.com', 'Rua F, 987'),
+(7, '78901234567', '2024-03-22', '333333333', 'marcos@email.com', 'Rua G, 147'),
+(8, '89012345678', '2023-07-10', '222222222', 'fernanda@email.com', 'Rua H, 258'),
+(9, '90123456789', '2022-11-05', '111111111', 'lucas@email.com', 'Rua I, 369'),
+(10, '01234567890', '2023-05-02', '000000000', 'camila@email.com', 'Rua J, 753');
+
+select * from cliente
+
+
+INSERT INTO modelo (cod_modelo, nm_modelo, nm_marca) VALUES 
+(1, 'iPhone 12', 'Apple'),
+(2, 'Galaxy S21', 'Samsung'),
+(3, 'OnePlus 9', 'OnePlus'),
+(4, 'Mi 11', 'Xiaomi'),
+(5, 'Pixel 5', 'Google'),
+(6, 'Xperia 1 III', 'Sony'),
+(7, 'Mate 40 Pro', 'Huawei'),
+(8, 'Zenfone 8', 'Asus'),
+(9, 'Find X3 Pro', 'Oppo'),
+(10, 'Mi 11 Ultra', 'Xiaomi');
+
+select * from modelo
+
+
+
+INSERT INTO dispositivo (cod_dispositivo, cod_modelo, cod_cliente) VALUES 
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5),
+(6, 6, 6),
+(7, 7, 7),
+(8, 8, 8),
+(9, 9, 9),
+(10, 10, 10);
+
+
+select * from dispositivo
+
+
+INSERT INTO plano (cod_plano, desc_plano, valor) VALUES 
+(1, 'Plano Básico', 50.00),
+(2, 'Plano Intermediário', 80.00),
+(3, 'Plano Avançado', 120.00),
+(4, 'Plano Premium', 200.00),
+(5, 'Plano Personalizado', 150.00),
+(6, 'Plano Familiar', 250.00),
+(7, 'Plano Empresarial', 300.00),
+(8, 'Plano Corporativo', 350.00),
+(9, 'Plano Especial', 400.00),
+(10, 'Plano VIP', 500.00);
+
+
+select * from plano
+
+
+INSERT INTO seguro (cod_seguro, cod_cliente, dt_inicio, dt_fim, cod_plano) VALUES 
+(1, 1, '2023-02-10', '2024-02-10', 3),
+(2, 2, '2022-07-05', '2023-07-05', 2),
+(3, 3, '2024-01-20', '2025-01-20', 5),
+(4, 4, '2023-11-15', '2024-11-15', 4),
+(5, 5, '2022-05-30', '2023-05-30', 1),
+(6, 6, '2023-09-18', '2024-09-18', 6),
+(7, 7, '2024-03-22', '2025-03-22', 8),
+(8, 8, '2023-07-10', '2024-07-10', 7),
+(9, 9, '2022-11-05', '2023-11-05', 9),
+(10, 10, '2023-05-02', '2024-05-02', 10);
+
+
+select * from seguro
+
+
+INSERT INTO sinistro (cod_sinistro, cod_dispositivo, dt_sinistro, tp_sinistro) VALUES 
+(1, 1, '2023-05-20', 'Roubo'),
+(2, 2, '2023-08-10', 'Quebra'),
+(3, 3, '2024-02-05', 'Roubo'),
+(4, 4, '2023-12-15', 'Quebra'),
+(5, 5, '2022-08-30', 'Roubo'),
+(6, 6, '2024-01-18', 'Quebra'),
+(7, 7, '2024-05-22', 'Roubo'),
+(9, 9, '2023-09-22', 'Roubo'),
+(10, 10, '2023-12-22', 'Roubo')
+
+
+select * from sinistro
