@@ -62,23 +62,23 @@ CREATE TABLE [avaliacao] (
 )
 GO
 
-ALTER TABLE [pessoa] ADD FOREIGN KEY ([cpf]) REFERENCES [cliente] ([cpf])
+ALTER TABLE [cliente] ADD FOREIGN KEY ([cpf]) REFERENCES pessoa ([cpf])
 GO
 
-ALTER TABLE [cliente] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [dispositivo] ([cod_cliente])
+ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_cliente]) REFERENCES cliente ([cod_cliente])
 GO
 
-ALTER TABLE [modelo] ADD FOREIGN KEY ([cod_modelo]) REFERENCES [dispositivo] ([cod_modelo])
+ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_modelo]) REFERENCES [modelo] ([cod_modelo])
 GO
 
-ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [sinistro] ([cod_dispositivo])
+ALTER TABLE [sinistro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dispositivo] ([cod_dispositivo])
 GO
 
-ALTER TABLE [sinistro] ADD FOREIGN KEY ([cod_sinistro]) REFERENCES [avaliacao] ([cod_sinistro])
+ALTER TABLE [avaliacao] ADD FOREIGN KEY ([cod_sinistro]) REFERENCES [sinistro] ([cod_sinistro])
 GO
 
-ALTER TABLE [cliente] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [seguro] ([cod_cliente])
+ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [cliente] ([cod_cliente])
 GO
 
-ALTER TABLE [plano] ADD FOREIGN KEY ([cod_plano]) REFERENCES [seguro] ([cod_plano])
+ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_plano]) REFERENCES [plano] ([cod_plano])
 GO
