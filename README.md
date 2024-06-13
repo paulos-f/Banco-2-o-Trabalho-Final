@@ -87,69 +87,93 @@ tabelas:
 
 termino das tabelas:
 
+	CREATE TABLE [cliente] (
+	  [cod_cliente] integer PRIMARY KEY not null,
+	  [cpf] varchar(11) not null,
+	  [nome] varchar(50) not null,
+	  [sexo] char,
+	  [dt_nascimento] date not null
+	  [dt_cadastro] date not null,
+	  [num_contato] varchar(13) not null,
+	  [email] varchar(100),
+	  [endereco] varchar(100)
+	)
+	GO
 	
-	Table pessoa {
-	  cpf varchar(11) [primary key]
-	  nome varchar(50)
-	  sexo char
-	  dt_nascimento date
-	}
+	CREATE TABLE [modelo] (
+	  [cod_modelo] integer PRIMARY KEY not null,
+	  [nm_modelo] varchar(25) not null
+	)
+	GO
 	
-	Table cliente {
-	  cod_cliente integer [primary key]
-	  cpf varchar(11)
-	  dt_cadastro date
-	  num_contato varchar(13)
-	  email varchar(100)
-	  endereco varchar(100)
-	}
+	CREATE TABLE [marca] (
+	  [cod_marca] integer PRIMARY KEY not null,
+	  [cod_modelo] integer not null,
+	  [nm_marca] varchar(15) not null
+	)
+	GO
 	
-	Table modelo{
-	  cod_modelo integer [primary key]
-	  nm_modelo varchar(25)
-	  nm_marca varchar(15)
-	}
 	
-	Table dispositivo {
-	  cod_dispositivo integer [primary key]
-	  cod_modelo integer
-	  cod_cliente integer
-	}
+	CREATE TABLE [dispositivo] (
+	  [cod_dispositivo] integer PRIMARY KEY not null,
+	  [cod_modelo] integer not null,
+	  [cod_cliente] integer not null
+	)
+	GO
 	
-	table plano{
-	  cod_plano integer [primary key]
-	  desc_plano varchar(100)
-	  valor float
-	}
+	CREATE TABLE [plano] (
+	  [cod_plano] integer PRIMARY KEY not null,
+	  [desc_plano] varchar(100),
+	  [valor] float not null
+	)
+	GO
 	
-	table seguro{
-	  cod_seguro integer [primary key]
-	  cod_cliente integer
-	  dt_inicio date
-	  dt_fim date
-	  cod_plano integer
-	}
+	CREATE TABLE [seguro] (
+	  [cod_seguro] integer PRIMARY KEY not null,
+	  [cod_cliente] integer not null,
+	  [dt_inicio] date not null,
+	  [dt_fim] date not null,
+	  [cod_plano] integer not null
+	)
+	GO
 	
-	table sinistro{
-	  cod_sinistro integer [primary key]
-	  cod_dispositivo integer
-	  dt_sinistro date
-	  tp_sinistro varchar(100)
-	}
+	CREATE TABLE [sinistro] (
+	  [cod_sinistro] integer PRIMARY KEY not null,
+	  [cod_dispositivo] integer not null,
+	  [tp_sinistro] integer not null,
+	  [dt_sinistro] date not null,
+	)
+	GO
 	
-	table avaliacao{
-	  cod_avaliacao integer [primary key]
-	  cod_sinistro intereger
-	  desc_avaliacao varchar(200)
-	  status varchar(10)
-	}
+	CREATE TABLE [tipo_sinistro] (
+	  [tp_sinistro] integer PRIMARY KEY not null,
+	  [desc_sinistro] varchar(100) not null
+	)
+	GO
 	
-	ref: pessoa.cpf > cliente.cpf
-	Ref: cliente.cod_cliente > dispositivo.cod_cliente 
-	ref: modelo.cod_modelo > dispositivo.cod_modelo
-	ref: dispositivo.cod_dispositivo > sinistro.cod_dispositivo
-	ref: sinistro.cod_sinistro > avaliacao.cod_sinistro
-	ref: cliente.cod_cliente > seguro.cod_cliente
-	ref: plano.cod_plano > seguro.cod_plano
+	
+	ALTER TABLE [marca] ADD FOREIGN KEY ([cod_modelo]) REFERENCES modelo ([cod_modelo])
+	GO
+	
+	ALTER TABLE [sinistro] ADD FOREIGN KEY ([tp_sinistro]) REFERENCES tipo_sinistro ([tp_sinistro])
+	GO
+	
+	ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_cliente]) REFERENCES cliente ([cod_cliente])
+	GO
+	
+	ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_modelo]) REFERENCES [modelo] ([cod_modelo])
+	GO
+	
+	ALTER TABLE [sinistro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dispositivo] ([cod_dispositivo])
+	GO
+	
+	ALTER TABLE [avaliacao] ADD FOREIGN KEY ([cod_sinistro]) REFERENCES [sinistro] ([cod_sinistro])
+	GO
+	
+	ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [cliente] ([cod_cliente])
+	GO
+	
+	ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_plano]) REFERENCES [plano] ([cod_plano])
+	GO
 
 ![Alt text](modelo_fisico.png)
