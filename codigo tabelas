@@ -1,14 +1,10 @@
-CREATE TABLE [pessoa] (
-  [cpf] varchar(11) PRIMARY KEY not null,
-  [nome] varchar(50) not null,
-  [sexo] char,
-  [dt_nascimento] date not null
-)
-GO
 
 CREATE TABLE [cliente] (
   [cod_cliente] integer PRIMARY KEY not null,
   [cpf] varchar(11) not null,
+  [nome] varchar(50) not null,
+  [sexo] char,
+  [dt_nascimento] date not null
   [dt_cadastro] date not null,
   [num_contato] varchar(13) not null,
   [email] varchar(100),
@@ -18,10 +14,17 @@ GO
 
 CREATE TABLE [modelo] (
   [cod_modelo] integer PRIMARY KEY not null,
-  [nm_modelo] varchar(25) not null,
+  [nm_modelo] varchar(25) not null
+)
+GO
+
+CREATE TABLE [marca] (
+  [cod_marca] integer PRIMARY KEY not null,
+  [cod_modelo] integer not null,
   [nm_marca] varchar(15) not null
 )
 GO
+
 
 CREATE TABLE [dispositivo] (
   [cod_dispositivo] integer PRIMARY KEY not null,
@@ -49,20 +52,22 @@ GO
 CREATE TABLE [sinistro] (
   [cod_sinistro] integer PRIMARY KEY not null,
   [cod_dispositivo] integer not null,
+  [tp_sinistro] integer not null,
   [dt_sinistro] date not null,
-  [tp_sinistro] varchar(100) not null
 )
 GO
 
-CREATE TABLE [avaliacao] (
-  [cod_avaliacao] integer PRIMARY KEY not null,
-  [cod_sinistro] integer not null,
-  [desc_avaliacao] varchar(200),
-  [status] varchar(10) not null
+CREATE TABLE [tipo_sinistro] (
+  [tp_sinistro] integer PRIMARY KEY not null,
+  [desc_sinistro] varchar(100) not null
 )
 GO
 
-ALTER TABLE [cliente] ADD FOREIGN KEY ([cpf]) REFERENCES pessoa ([cpf])
+
+ALTER TABLE [marca] ADD FOREIGN KEY ([cod_modelo]) REFERENCES modelo ([cod_modelo])
+GO
+
+ALTER TABLE [sinistro] ADD FOREIGN KEY ([tp_sinistro]) REFERENCES tipo_sinistro ([tp_sinistro])
 GO
 
 ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_cliente]) REFERENCES cliente ([cod_cliente])
