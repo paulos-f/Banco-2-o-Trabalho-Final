@@ -176,4 +176,4 @@ termino das tabelas:
 	ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_plano]) REFERENCES [plano] ([cod_plano])
 	GO
 
-![Alt text](modelo_fisico.png)
+![Alt text](modelo_fisico_2.png)
