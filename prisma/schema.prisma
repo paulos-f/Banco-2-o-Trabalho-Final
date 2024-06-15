@@ -7,62 +7,58 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model pessoa {
-  cpf           String   @unique
-  nome          String
-  sexo          String
-  dt_nascimento DateTime
-}
 
 model cliente {
-  cod_cliente   String @unique
-  cpf           String
-  dt_nascimento DateTime
-  num_contato   String
+  cod_cliente   Int       @id @default @unique
+  cpf           String    @default @unique
+  nome          String    @default
+  sexo          String
+  dt_nascimento DateTime  @default
+  num_contato   String    @default
   email         String
   endereco      String
-
 }
 
 model modelo{
-  cod_modelo  Int @unique
-  nm_modelo   String
-  nm_marca    String
+  cod_modelo  Int @id @default @unique
+  nm_modelo   String @default
+}
+
+model marca{
+  cod_marca   Int @id @default @unique
+  cod_modelo  Int @default @unique
 }
 
 model dispositivo{
-
-  cod_dispositivo Int @unique
-  cod_modelo      Int
-  cod_cliente     Int
+  cod_dispositivo Int @id @default @unique
+  cod_modelo      Int @default @unique
+  cod_cliente     Int @default @unique
 }
 
 model plano{
-  cod_plano     Int @unique
+  cod_plano     Int @id @default @unique
   desc_plano    String
-  valor         Float
+  valor         Float @default
 }
 
 model seguro{
-  cod_seguro    Int  @unique
-  cod_cliente   Int
-  dt_inicio     DateTime
-  dt_fim        DateTime
-  cod_plano     Int
+  cod_seguro    Int       @id @default @unique
+  cod_cliente   Int       @default @unique
+  dt_inicio     DateTime  @default
+  dt_fim        DateTime  @default
+  cod_plano     Int       @default @unique
 }
 
 model sinistro{
-  cod_sinistro      Int @unique
-  cod_dispositivo   Int
-  dt_sinistro       DateTime
-  tp_sinistro       String
+  cod_sinistro      Int     @id @default @unique
+  cod_dispositivo   Int     @default @unique
+  tp_sinistro       String  @default
+  dt_sinistro       String  @default
 }
 
-model avaliacao{
-  cod_avaliacao   Int @unique
-  cod_sinistro    Int
-  desc_avaliacao  String
-  status          String
+model tipo_sinistro{
+  tp_sinistro Int @id @default @unique
+  desc_avaliacao  String @default
 }
 
 
