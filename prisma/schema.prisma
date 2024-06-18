@@ -9,56 +9,56 @@ datasource db {
 
 
 model cliente {
-  cod_cliente   Int       @id @default @unique
-  cpf           String    @default @unique
-  nome          String    @default
+  cod_cliente   Int       @id  @unique
+  cpf           String    @unique
+  nome          String    
   sexo          String
-  dt_nascimento DateTime  @default
-  num_contato   String    @default
+  dt_nascimento DateTime  
+  num_contato   String    
   email         String
   endereco      String
 }
 
 model modelo{
-  cod_modelo  Int @id @default @unique
-  nm_modelo   String @default
+  cod_modelo  Int @id  @unique
+  nm_modelo   String 
 }
 
 model marca{
-  cod_marca   Int @id @default @unique
-  cod_modelo  Int @default @unique
+  cod_marca   Int @id  @unique
+  cod_modelo  Int @unique
 }
 
 model dispositivo{
-  cod_dispositivo Int @id @default @unique
-  cod_modelo      Int @default @unique
-  cod_cliente     Int @default @unique
+  cod_dispositivo Int @id  @unique
+  cod_modelo      Int  @unique
+  cod_cliente     Int  @unique
 }
 
 model plano{
-  cod_plano     Int @id @default @unique
+  cod_plano     Int @id  @unique
   desc_plano    String
-  valor         Float @default
+  valor         Float 
 }
 
 model seguro{
-  cod_seguro    Int       @id @default @unique
-  cod_cliente   Int       @default @unique
-  dt_inicio     DateTime  @default
-  dt_fim        DateTime  @default
-  cod_plano     Int       @default @unique
+  cod_seguro    Int       @id  @unique
+  cod_cliente   Int        @unique
+  dt_inicio     DateTime  
+  dt_fim        DateTime  
+  cod_plano     Int        @unique
 }
 
 model sinistro{
-  cod_sinistro      Int     @id @default @unique
-  cod_dispositivo   Int     @default @unique
-  tp_sinistro       String  @default
-  dt_sinistro       String  @default
+  cod_sinistro      Int     @id  @unique
+  cod_dispositivo   Int      @unique
+  tp_sinistro       String  
+  dt_sinistro       String  
 }
 
 model tipo_sinistro{
-  tp_sinistro Int @id @default @unique
-  desc_avaliacao  String @default
+  tp_sinistro Int @id  @unique
+  desc_avaliacao  String 
 }
 
 
