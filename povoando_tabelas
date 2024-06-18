@@ -94,22 +94,6 @@ VALUES
 select * from seguro
 
 
-INSERT INTO sinistro (cod_sinistro, cod_dispositivo, tp_sinistro, dt_sinistro)
-VALUES
-(1, 1, 1, '2022-05-01'),
-(2, 2, 2, '2022-06-01'),
-(3, 3, 3, '2022-07-01'),
-(4, 4, 1, '2022-08-01'),
-(5, 5, 2, '2022-09-01'),
-(6, 6, 3, '2022-10-01'),
-(7, 7, 1, '2022-11-01'),
-(8, 8, 2, '2022-12-01'),
-(9, 9, 3, '2023-01-01'),
-(10, 10, 1, '2023-02-01')
-;
-select * from sinistro
-
-
 INSERT INTO tipo_sinistro (tp_sinistro, desc_sinistro)
 VALUES
 (1, 'Roubo'),
@@ -124,3 +108,19 @@ VALUES
 (10, 'Defeito de Fábrica')
 ;
 select * from tipo_sinistro
+
+
+INSERT INTO sinistro (cod_sinistro, cod_dispositivo, tp_sinistro, dt_sinistro)
+VALUES
+(1, 1, 1, '2022-05-01'),
+(2, 2, 2, '2022-06-01'),
+(3, 3, 3, '2022-07-01'),
+(4, 4, 1, '2022-08-01'),
+(5, 5, 2, '2022-09-01'),
+(6, 6, 3, '2022-10-01'),
+(7, 7, 1, '2022-11-01'),
+(8, 8, 2, '2022-12-01'),
+(9, 9, 3, '2023-01-01'),
+(10, 10, 1, '2023-02-01')
+;
+select * from sinistro
