@@ -49,6 +49,12 @@ CREATE TABLE [seguro] (
 )
 GO
 
+CREATE TABLE [tipo_sinistro] (
+  [tp_sinistro] integer PRIMARY KEY not null,
+  [desc_sinistro] varchar(100) not null
+)
+GO
+
 CREATE TABLE [sinistro] (
   [cod_sinistro] integer PRIMARY KEY not null,
   [cod_dispositivo] integer not null,
@@ -57,11 +63,7 @@ CREATE TABLE [sinistro] (
 )
 GO
 
-CREATE TABLE [tipo_sinistro] (
-  [tp_sinistro] integer PRIMARY KEY not null,
-  [desc_sinistro] varchar(100) not null
-)
-GO
+
 
 
 ALTER TABLE [marca] ADD FOREIGN KEY ([cod_modelo]) REFERENCES modelo ([cod_modelo])
@@ -79,11 +81,8 @@ GO
 ALTER TABLE [sinistro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dispositivo] ([cod_dispositivo])
 GO
 
-ALTER TABLE [avaliacao] ADD FOREIGN KEY ([cod_sinistro]) REFERENCES [sinistro] ([cod_sinistro])
-GO
-
 ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [cliente] ([cod_cliente])
-GO
+GO #1praN
 
 ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_plano]) REFERENCES [plano] ([cod_plano])
-GO
+GO #1praN

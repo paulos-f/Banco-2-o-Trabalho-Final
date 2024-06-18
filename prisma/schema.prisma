@@ -8,7 +8,7 @@ datasource db {
 }
 
 
-model cliente {
+model Cliente {
   cod_cliente   Int       @id  @unique
   cpf           String    @unique
   nome          String    
@@ -17,48 +17,64 @@ model cliente {
   num_contato   String    
   email         String
   endereco      String
+  dispositivo Dispositivo[]
+  seguro Seguro[]
 }
 
-model modelo{
+model Modelo{
   cod_modelo  Int @id  @unique
   nm_modelo   String 
+  marca Marca[]
+  dispositivo Dispositivo[]
 }
 
-model marca{
+model Marca{
   cod_marca   Int @id  @unique
   cod_modelo  Int @unique
+  modelo Modelo @relation(fields: [cod_modelo],references: [cod_modelo])
 }
 
-model dispositivo{
+model Dispositivo{
   cod_dispositivo Int @id  @unique
   cod_modelo      Int  @unique
   cod_cliente     Int  @unique
+  cliente Cliente @relation(fields: [cod_cliente], references: [cod_cliente])
+  modelo Modelo @relation(fields: [cod_modelo],references: [cod_modelo])
+  sinistro Sinistro[]
 }
 
-model plano{
+model Plano{
   cod_plano     Int @id  @unique
   desc_plano    String
-  valor         Float 
+  valor         Float
+  seguro Seguro[]
 }
 
-model seguro{
+model Seguro{
   cod_seguro    Int       @id  @unique
   cod_cliente   Int        @unique
   dt_inicio     DateTime  
   dt_fim        DateTime  
   cod_plano     Int        @unique
+  plano Plano @relation(fields: [cod_plano],references: [cod_plano])
+  cliente Cliente @relation(fields: [cod_cliente],references: [cod_cliente])
+
 }
 
-model sinistro{
+
+model Tipo_sinistro{
+  tp_sinistro Int @id  @unique
+  desc_avaliacao  String
+  sinistro Sinistro?
+}
+
+model Sinistro{
   cod_sinistro      Int     @id  @unique
   cod_dispositivo   Int      @unique
-  tp_sinistro       String  
-  dt_sinistro       String  
-}
-
-model tipo_sinistro{
-  tp_sinistro Int @id  @unique
-  desc_avaliacao  String 
+  tp_sinistro       Int     @unique
+  dt_sinistro       String
+  tipo_sinistro Tipo_sinistro @relation(fields: [tp_sinistro], references: [tp_sinistro])
+  dispositivo Dispositivo @relation(fields: [cod_dispositivo], references: [cod_dispositivo])
 }
 
 
