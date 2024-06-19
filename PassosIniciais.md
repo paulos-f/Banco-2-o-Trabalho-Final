@@ -17,5 +17,5 @@ npx prisma migrate dev
 por fim para rodar o projeto:
 
 ```
-npm start
+npm run dev
 ```

@@ -7,13 +7,13 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-
 model Cliente {
   cod_cliente   Int       @id  @unique
   cpf           String    @unique
   nome          String    
   sexo          String
-  dt_nascimento DateTime  
+  dt_nascimento DateTime
+  dt_cadastro   DateTime
   num_contato   String    
   email         String
   endereco      String
