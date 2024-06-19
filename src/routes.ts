@@ -3,7 +3,9 @@ import comandoDML from "./controller/comandoDML";
 
 const router = Router();
 
-router.get('/comandosDML', comandoDML.popularBanco);
+router.get('/comandosDML/popularBanco', comandoDML.popularBanco);
+router.delete('/comandosDML/limparBanco', comandoDML.limparBanco);
+router.get('/comandosDML/teste', comandoDML.teste);
 
 router.get('/teste', (req: Request, res: Response) => {
     res.send("Chegou!")

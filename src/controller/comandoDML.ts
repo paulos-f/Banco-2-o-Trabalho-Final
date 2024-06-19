@@ -7,123 +7,178 @@ class ComandoDML {
     public async popularBanco(req: Request, res: Response) {
         try {
             await prisma.$queryRawUnsafe(`
-            INSERT INTO cliente (cod_cliente, cpf, nome, sexo, dt_nascimento, dt_cadastro, num_contato, email, endereco)
-            VALUES
-            (1, '12345678901', 'João da Silva', 'M', '1980-01-15', '2022-01-01', '11987654321', 'joao.silva@gmail.com', 'Rua A, 123'),
-            (2, '23456789012', 'Maria Oliveira', 'F', '1990-02-20', '2022-02-01', '21987654321', 'maria.oliveira@gmail.com', 'Rua B, 456'),
-            (3, '34567890123', 'Carlos Pereira', 'M', '1985-03-25', '2022-03-01', '31987654321', 'carlos.pereira@gmail.com', 'Rua C, 789'),
-            (4, '45678901234', 'Ana Souza', 'F', '1995-04-30', '2022-04-01', '41987654321', 'ana.souza@gmail.com', 'Rua D, 101'),
-            (5, '56789012345', 'Paulo Lima', 'M', '1988-05-10', '2022-05-01', '51987654321', 'paulo.lima@gmail.com', 'Rua E, 202'),
-            (6, '67890123456', 'Fernanda Santos', 'F', '1992-06-15', '2022-06-01', '61987654321', 'fernanda.santos@gmail.com', 'Rua F, 303'),
-            (7, '78901234567', 'Ricardo Gomes', 'M', '1983-07-20', '2022-07-01', '71987654321', 'ricardo.gomes@gmail.com', 'Rua G, 404'),
-            (8, '89012345678', 'Juliana Costa', 'F', '1987-08-25', '2022-08-01', '81987654321', 'juliana.costa@gmail.com', 'Rua H, 505'),
-            (9, '90123456789', 'Marcos Alves', 'M', '1981-09-30', '2022-09-01', '91987654321', 'marcos.alves@gmail.com', 'Rua I, 606'),
-            (10, '01234567890', 'Bianca Machado', 'F', '1993-10-05', '2022-10-01', '01987654321', 'bianca.machado@gmail.com', 'Rua J, 707')
-            ;
+            await prisma.cliente.createMany({
+              data: [
+                { cod_cliente: 1, cpf: '12345678901', nome: 'João da Silva', sexo: 'M', dt_nascimento: new Date('1980-01-15'), dt_cadastro: new Date('2022-01-01'), num_contato: '11987654321', email: 'joao.silva@gmail.com', endereco: 'Rua A, 123' },
+                { cod_cliente: 2, cpf: '23456789012', nome: 'Maria Oliveira', sexo: 'F', dt_nascimento: new Date('1990-02-20'), dt_cadastro: new Date('2022-02-01'), num_contato: '21987654321', email: 'maria.oliveira@gmail.com', endereco: 'Rua B, 456' },
+                { cod_cliente: 3, cpf: '34567890123', nome: 'Carlos Pereira', sexo: 'M', dt_nascimento: new Date('1985-03-25'), dt_cadastro: new Date('2022-03-01'), num_contato: '31987654321', email: 'carlos.pereira@gmail.com', endereco: 'Rua C, 789' },
+                { cod_cliente: 4, cpf: '45678901234', nome: 'Ana Souza', sexo: 'F', dt_nascimento: new Date('1995-04-30'), dt_cadastro: new Date('2022-04-01'), num_contato: '41987654321', email: 'ana.souza@gmail.com', endereco: 'Rua D, 101' },
+                { cod_cliente: 5, cpf: '56789012345', nome: 'Paulo Lima', sexo: 'M', dt_nascimento: new Date('1988-05-10'), dt_cadastro: new Date('2022-05-01'), num_contato: '51987654321', email: 'paulo.lima@gmail.com', endereco: 'Rua E, 202' },
+                { cod_cliente: 6, cpf: '67890123456', nome: 'Fernanda Santos', sexo: 'F', dt_nascimento: new Date('1992-06-15'), dt_cadastro: new Date('2022-06-01'), num_contato: '61987654321', email: 'fernanda.santos@gmail.com', endereco: 'Rua F, 303' },
+                { cod_cliente: 7, cpf: '78901234567', nome: 'Ricardo Gomes', sexo: 'M', dt_nascimento: new Date('1983-07-20'), dt_cadastro: new Date('2022-07-01'), num_contato: '71987654321', email: 'ricardo.gomes@gmail.com', endereco: 'Rua G, 404' },
+                { cod_cliente: 8, cpf: '89012345678', nome: 'Juliana Costa', sexo: 'F', dt_nascimento: new Date('1987-08-25'), dt_cadastro: new Date('2022-08-01'), num_contato: '81987654321', email: 'juliana.costa@gmail.com', endereco: 'Rua H, 505' },
+                { cod_cliente: 9, cpf: '90123456789', nome: 'Marcos Alves', sexo: 'M', dt_nascimento: new Date('1981-09-30'), dt_cadastro: new Date('2022-09-01'), num_contato: '91987654321', email: 'marcos.alves@gmail.com', endereco: 'Rua I, 606' },
+                { cod_cliente: 10, cpf: '01234567890', nome: 'Bianca Machado', sexo: 'F', dt_nascimento: new Date('1993-10-05'), dt_cadastro: new Date('2022-10-01'), num_contato: '01987654321', email: 'bianca.machado@gmail.com', endereco: 'Rua J, 707' }
+              ]
+            });
             
-            INSERT INTO modelo (cod_modelo, nm_modelo)
-            VALUES
-            (1, 'Galaxy S21'),
-            (2, 'iPhone 12'),
-            (3, 'Moto G8'),
-            (4, 'Xperia 5'),
-            (5, 'Galaxy S20'),
-            (6, 'iPhone 11'),
-            (7, 'Moto G7'),
-            (8, 'Xperia 4'),
-            (9, 'Galaxy S10'),
-            (10, 'iPhone X')
-            ;
+            await prisma.modelo.createMany({
+              data: [
+                { cod_modelo: 1, nm_modelo: 'Galaxy S21' },
+                { cod_modelo: 2, nm_modelo: 'iPhone 12' },
+                { cod_modelo: 3, nm_modelo: 'Moto G8' },
+                { cod_modelo: 4, nm_modelo: 'Xperia 5' },
+                { cod_modelo: 5, nm_modelo: 'Galaxy S20' },
+                { cod_modelo: 6, nm_modelo: 'iPhone 11' },
+                { cod_modelo: 7, nm_modelo: 'Moto G7' },
+                { cod_modelo: 8, nm_modelo: 'Xperia 4' },
+                { cod_modelo: 9, nm_modelo: 'Galaxy S10' },
+                { cod_modelo: 10, nm_modelo: 'iPhone X' }
+              ]
+            });
             
-            INSERT INTO marca (cod_marca, cod_modelo, nm_marca)
-            VALUES
-            (1, 1, 'Samsung'),
-            (2, 2, 'Apple'),
-            (3, 3, 'Motorola'),
-            (4, 4, 'Sony'),
-            (5, 5, 'Samsung'),
-            (6, 6, 'Apple'),
-            (7, 7, 'Motorola'),
-            (8, 8, 'Sony'),
-            (9, 9, 'Samsung'),
-            (10, 10, 'Apple')
-            ;
+            await prisma.marca.createMany({
+              data: [
+                { cod_marca: 1, cod_modelo: 1, nm_marca: 'Samsung' },
+                { cod_marca: 2, cod_modelo: 2, nm_marca: 'Apple' },
+                { cod_marca: 3, cod_modelo: 3, nm_marca: 'Motorola' },
+                { cod_marca: 4, cod_modelo: 4, nm_marca: 'Sony' },
+                { cod_marca: 5, cod_modelo: 5, nm_marca: 'Samsung' },
+                { cod_marca: 6, cod_modelo: 6, nm_marca: 'Apple' },
+                { cod_marca: 7, cod_modelo: 7, nm_marca: 'Motorola' },
+                { cod_marca: 8, cod_modelo: 8, nm_marca: 'Sony' },
+                { cod_marca: 9, cod_modelo: 9, nm_marca: 'Samsung' },
+                { cod_marca: 10, cod_modelo: 10, nm_marca: 'Apple' }
+              ]
+            });
             
-            INSERT INTO dispositivo (cod_dispositivo, cod_modelo, cod_cliente)
-            VALUES
-            (1, 1, 1),
-            (2, 2, 2),
-            (3, 3, 3),
-            (4, 4, 4),
-            (5, 5, 5),
-            (6, 6, 6),
-            (7, 7, 7),
-            (8, 8, 8),
-            (9, 9, 9),
-            (10, 10, 10)
-            ;
+            await prisma.dispositivo.createMany({
+              data: [
+                { cod_dispositivo: 1, cod_modelo: 1, cod_cliente: 1 },
+                { cod_dispositivo: 2, cod_modelo: 2, cod_cliente: 2 },
+                { cod_dispositivo: 3, cod_modelo: 3, cod_cliente: 3 },
+                { cod_dispositivo: 4, cod_modelo: 4, cod_cliente: 4 },
+                { cod_dispositivo: 5, cod_modelo: 5, cod_cliente: 5 },
+                { cod_dispositivo: 6, cod_modelo: 6, cod_cliente: 6 },
+                { cod_dispositivo: 7, cod_modelo: 7, cod_cliente: 7 },
+                { cod_dispositivo: 8, cod_modelo: 8, cod_cliente: 8 },
+                { cod_dispositivo: 9, cod_modelo: 9, cod_cliente: 9 },
+                { cod_dispositivo: 10, cod_modelo: 10, cod_cliente: 10 }
+              ]
+            });
             
-            INSERT INTO plano (cod_plano, desc_plano, valor)
-            VALUES
-            (1, 'Plano Básico', 29.99),
-            (2, 'Plano Intermediário', 49.99),
-            (3, 'Plano Avançado', 69.99),
-            (4, 'Plano Premium', 89.99),
-            (5, 'Plano Família', 109.99),
-            (6, 'Plano Corporativo', 199.99),
-            (7, 'Plano Estudante', 19.99),
-            (8, 'Plano Jovem', 39.99),
-            (9, 'Plano Sênior', 59.99),
-            (10, 'Plano Completo', 79.99)
-            ;
+            await prisma.plano.createMany({
+              data: [
+                { cod_plano: 1, desc_plano: 'Plano Básico', valor: 29.99 },
+                { cod_plano: 2, desc_plano: 'Plano Intermediário', valor: 49.99 },
+                { cod_plano: 3, desc_plano: 'Plano Avançado', valor: 69.99 },
+                { cod_plano: 4, desc_plano: 'Plano Premium', valor: 89.99 },
+                { cod_plano: 5, desc_plano: 'Plano Família', valor: 109.99 },
+                { cod_plano: 6, desc_plano: 'Plano Corporativo', valor: 199.99 },
+                { cod_plano: 7, desc_plano: 'Plano Estudante', valor: 19.99 },
+                { cod_plano: 8, desc_plano: 'Plano Jovem', valor: 39.99 },
+                { cod_plano: 9, desc_plano: 'Plano Sênior', valor: 59.99 },
+                { cod_plano: 10, desc_plano: 'Plano Completo', valor: 79.99 }
+              ]
+            });
             
-            INSERT INTO seguro (cod_seguro, cod_cliente, dt_inicio, dt_fim, cod_plano)
-            VALUES
-            (1, 1, '2022-01-01', '2023-01-01', 1),
-            (2, 2, '2022-02-01', '2023-02-01', 2),
-            (3, 3, '2022-03-01', '2023-03-01', 3),
-            (4, 4, '2022-04-01', '2023-04-01', 4),
-            (5, 5, '2022-05-01', '2023-05-01', 5),
-            (6, 6, '2022-06-01', '2023-06-01', 6),
-            (7, 7, '2022-07-01', '2023-07-01', 7),
-            (8, 8, '2022-08-01', '2023-08-01', 8),
-            (9, 9, '2022-09-01', '2023-09-01', 9),
-            (10, 10, '2022-10-01', '2023-10-01', 10)
-            ;
+            await prisma.seguro.createMany({
+              data: [
+                { cod_seguro: 1, cod_cliente: 1, dt_inicio: new Date('2022-01-01'), dt_fim: new Date('2023-01-01'), cod_plano: 1 },
+                { cod_seguro: 2, cod_cliente: 2, dt_inicio: new Date('2022-02-01'), dt_fim: new Date('2023-02-01'), cod_plano: 2 },
+                { cod_seguro: 3, cod_cliente: 3, dt_inicio: new Date('2022-03-01'), dt_fim: new Date('2023-03-01'), cod_plano: 3 },
+                { cod_seguro: 4, cod_cliente: 4, dt_inicio: new Date('2022-04-01'), dt_fim: new Date('2023-04-01'), cod_plano: 4 },
+                { cod_seguro: 5, cod_cliente: 5, dt_inicio: new Date('2022-05-01'), dt_fim: new Date('2023-05-01'), cod_plano: 5 },
+                { cod_seguro: 6, cod_cliente: 6, dt_inicio: new Date('2022-06-01'), dt_fim: new Date('2023-06-01'), cod_plano: 6 },
+                { cod_seguro: 7, cod_cliente: 7, dt_inicio: new Date('2022-07-01'), dt_fim: new Date('2023-07-01'), cod_plano: 7 },
+                { cod_seguro: 8, cod_cliente: 8, dt_inicio: new Date('2022-08-01'), dt_fim: new Date('2023-08-01'), cod_plano: 8 },
+                { cod_seguro: 9, cod_cliente: 9, dt_inicio: new Date('2022-09-01'), dt_fim: new Date('2023-09-01'), cod_plano: 9 },
+                { cod_seguro: 10, cod_cliente: 10, dt_inicio: new Date('2022-10-01'), dt_fim: new Date('2023-10-01'), cod_plano: 10 }
+              ]
+            });
             
-            INSERT INTO tipo_sinistro (tp_sinistro, desc_sinistro)
-            VALUES
-            (1, 'Roubo'),
-            (2, 'Furto'),
-            (3, 'Dano Acidental'),
-            (4, 'Perda'),
-            (5, 'Dano por Água'),
-            (6, 'Queda'),
-            (7, 'Incêndio'),
-            (8, 'Dano Elétrico'),
-            (9, 'Desgaste'),
-            (10, 'Defeito de Fábrica')
-            ;
+            await prisma.tipo_sinistro.createMany({
+              data: [
+                { tp_sinistro: 1, desc_sinistro: 'Roubo' },
+                { tp_sinistro: 2, desc_sinistro: 'Furto' },
+                { tp_sinistro: 3, desc_sinistro: 'Dano Acidental' },
+                { tp_sinistro: 4, desc_sinistro: 'Perda' },
+                { tp_sinistro: 5, desc_sinistro: 'Dano por Água' },
+                { tp_sinistro: 6, desc_sinistro: 'Queda' },
+                { tp_sinistro: 7, desc_sinistro: 'Incêndio' },
+                { tp_sinistro: 8, desc_sinistro: 'Dano Elétrico' },
+                { tp_sinistro: 9, desc_sinistro: 'Desgaste' },
+                { tp_sinistro: 10, desc_sinistro: 'Defeito de Fábrica' }
+              ]
+            });
             
-            INSERT INTO sinistro (cod_sinistro, cod_dispositivo, tp_sinistro, dt_sinistro)
-            VALUES
-            (1, 1, 1, '2022-05-01'),
-            (2, 2, 2, '2022-06-01'),
-            (3, 3, 3, '2022-07-01'),
-            (4, 4, 1, '2022-08-01'),
-            (5, 5, 2, '2022-09-01'),
-            (6, 6, 3, '2022-10-01'),
-            (7, 7, 1, '2022-11-01'),
-            (8, 8, 2, '2022-12-01'),
-            (9, 9, 3, '2023-01-01'),
-            (10, 10, 1, '2023-02-01')
-            ;
+            await prisma.sinistro.createMany({
+              data: [
+                { cod_sinistro: 1, cod_dispositivo: 1, tp_sinistro: 1, dt_sinistro: new Date('2022-05-01') },
+                { cod_sinistro: 2, cod_dispositivo: 2, tp_sinistro: 2, dt_sinistro: new Date('2022-06-01') },
+                { cod_sinistro: 3, cod_dispositivo: 3, tp_sinistro: 3, dt_sinistro: new Date('2022-07-01') },
+                { cod_sinistro: 4, cod_dispositivo: 4, tp_sinistro: 1, dt_sinistro: new Date('2022-08-01') },
+                { cod_sinistro: 5, cod_dispositivo: 5, tp_sinistro: 2, dt_sinistro: new Date('2022-09-01') },
+                { cod_sinistro: 6, cod_dispositivo: 6, tp_sinistro: 3, dt_sinistro: new Date('2022-10-01') },
+                { cod_sinistro: 7, cod_dispositivo: 7, tp_sinistro: 1, dt_sinistro: new Date('2022-11-01') },
+                { cod_sinistro: 8, cod_dispositivo: 8, tp_sinistro: 2, dt_sinistro: new Date('2022-12-01') },
+                { cod_sinistro: 9, cod_dispositivo: 9, tp_sinistro: 3, dt_sinistro: new Date('2023-01-01') },
+                { cod_sinistro: 10, cod_dispositivo: 10, tp_sinistro: 1, dt_sinistro: new Date('2023-02-01') }
+              ]
+            });            
             `);
 
             return res.send("Tabela populada com sucesso!")
         } catch (error) {
             return res.send(error)
         }
+    }
+
+    public async limparBanco(req: Request, res: Response) {
+        try {
+            await prisma.cliente.deleteMany({
+                where: {}
+            });
+
+            await prisma.modelo.delete({
+                where: {}
+            })
+
+            await prisma.marca.delete({
+                where: {}
+            })
+
+            await prisma.dispositivo.delete({
+                where: {}
+            })
+
+            await prisma.plano.delete({
+                where: {}
+            })
+
+            await prisma.seguro.delete({
+                where: {}
+            })
+
+            await prisma.tipo_sinistro.delete({
+                where: {}
+            })
+
+            await prisma.sinistro.delete({
+                where: {}
+            })
+            
+            res.send("Dados do banco limpos com sucesso!")
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    public async teste(req: Request, res: Response) {
+        const data = await prisma.$queryRawUnsafe(`
+            select * from cliente;
+        `);
+        return res.send(data)
     }
 }
 
