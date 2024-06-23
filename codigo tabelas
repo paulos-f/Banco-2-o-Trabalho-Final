@@ -4,7 +4,7 @@ CREATE TABLE [cliente] (
   [cpf] varchar(11) not null,
   [nome] varchar(50) not null,
   [sexo] char,
-  [dt_nascimento] date not null
+  [dt_nascimento] date not null,
   [dt_cadastro] date not null,
   [num_contato] varchar(13) not null,
   [email] varchar(100),
@@ -82,7 +82,7 @@ GO
 ALTER TABLE [sinistro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dispositivo] ([cod_dispositivo])
 GO
 
-ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dipositivo] ([cod_dispositivo])
+ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dispositivo] ([cod_dispositivo])
 GO
 
 ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [cliente] ([cod_cliente])
