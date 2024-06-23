@@ -43,6 +43,7 @@ GO
 CREATE TABLE [seguro] (
   [cod_seguro] integer PRIMARY KEY not null,
   [cod_cliente] integer not null,
+  [cod_dispositivo] integer not null,
   [dt_inicio] date not null,
   [dt_fim] date not null,
   [cod_plano] integer not null
@@ -79,6 +80,9 @@ ALTER TABLE [dispositivo] ADD FOREIGN KEY ([cod_modelo]) REFERENCES [modelo] ([c
 GO
 
 ALTER TABLE [sinistro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dispositivo] ([cod_dispositivo])
+GO
+
+ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_dispositivo]) REFERENCES [dipositivo] ([cod_dispositivo])
 GO
 
 ALTER TABLE [seguro] ADD FOREIGN KEY ([cod_cliente]) REFERENCES [cliente] ([cod_cliente])
