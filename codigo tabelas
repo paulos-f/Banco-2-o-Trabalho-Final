@@ -64,6 +64,22 @@ CREATE TABLE [sinistro] (
 )
 GO
 
+create table historico_clien(
+ [dt_inserção] date not null,
+ [nm_usuario] varchar(100) not null,
+ [cod_cliente] integer  not null,
+  [cpf] varchar(11) not null,
+  [nome] varchar(50) not null,
+  [sexo] char,
+  [dt_nascimento] date not null,
+  [dt_cadastro] date not null,
+  [num_contato] varchar(13) not null,
+  [email] varchar(100),
+  [endereco] varchar(100)
+
+)
+go
+
 
 
 
