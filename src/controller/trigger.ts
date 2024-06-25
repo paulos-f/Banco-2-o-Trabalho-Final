@@ -7,7 +7,7 @@ class Triggers {
   public async criaTriggerAoEditarCliente(req: Request, res: Response) {
     try {
       await prisma.$executeRawUnsafe(`
-        CREATE TRIGGER trg_onupdate_cliente1
+        CREATE TRIGGER trg_onupdate_cliente
         AFTER UPDATE ON cliente
         BEGIN
             INSERT INTO historicoCliente (
