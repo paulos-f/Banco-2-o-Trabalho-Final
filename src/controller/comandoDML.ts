@@ -223,16 +223,18 @@ class ComandoDML {
     const seguros = await prisma.seguro.findMany();
     const tiposSinistro = await prisma.tipo_sinistro.findMany();
     const sinistros = await prisma.sinistro.findMany();
+    const historicoCliente = await prisma.historicoCliente.findMany();
 
     const data = {
       clientes,
+      historicoCliente,
       modelos,
       marcas,
       dispositivos,
       planos,
       seguros,
       tiposSinistro,
-      sinistros
+      sinistros,
     }
     
     return res.send(data)

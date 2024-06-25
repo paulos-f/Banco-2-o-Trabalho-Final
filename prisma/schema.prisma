@@ -76,9 +76,8 @@ model Sinistro {
   dispositivo     Dispositivo   @relation(fields: [cod_dispositivo], references: [cod_dispositivo])
 }
 
-model HistoricoClien {
-  dt_insercao   DateTime
-  nm_usuario    String
+model HistoricoCliente {
+  cod_historico Int      @id @unique @default(autoincrement())
   cod_cliente   Int
   cpf           String
   nome          String
@@ -89,4 +88,3 @@ model HistoricoClien {
   email         String
   endereco      String
 }
-

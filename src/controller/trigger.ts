@@ -3,36 +3,43 @@ import { Request, Response } from "express";
 
 const prisma = new PrismaClient();
 
-class ComandoDML {
-  public async triggers(req: Request, res: Response) {
+class Triggers {
+  public async criaTriggerAoEditarCliente(req: Request, res: Response) {
     try {
-        prisma.$use(async (params, next) => {
-        if (params.model === 'Cliente' && params.action === 'create') {
-        const result = await next(params);
-        
-        // Após a inserção, insere no historico_clien
-        await prisma.historicoClien.create({
-          data: {
-            dt_insercao: new Date(),
-            nm_usuario: user,
-            cod_cliente: result.cod_cliente,
-            cpf: result.cpf,
-            nome: result.nome,
-            sexo: result.sexo,
-            dt_nascimento: result.dt_nascimento,
-            dt_cadastro: result.dt_cadastro,
-            num_contato: result.num_contato,
-            email: result.email,
-            endereco: result.endereco
-          },
-        });
-        console.log('Novos dados inseridos no historico_clien');
-        return result;
-      } else {
-        return next(params);
-      }
-    })
+      await prisma.$executeRawUnsafe(`
+        CREATE TRIGGER trg_onupdate_cliente1
+        AFTER UPDATE ON cliente
+        BEGIN
+            INSERT INTO historicoCliente (
+                    cod_cliente,
+                    cpf,
+                    nome,
+                    sexo,
+                    dt_nascimento,
+                    dt_cadastro,
+                    num_contato,
+                    email,
+                    endereco
+            )
+            VALUES (
+                NEW.cod_cliente,                   
+                NEW.cpf,
+                NEW.nome,
+                NEW.sexo,
+                NEW.dt_nascimento,
+                NEW.dt_cadastro,
+                NEW.num_contato,
+                NEW.email,
+                NEW.endereco
+            );
+        END;
+      `);
+
+      return res.send('Trigger criada com sucesso');
     } catch (error) {
       return res.send(error)
     }
   }
+}
+
+export default new Triggers();
