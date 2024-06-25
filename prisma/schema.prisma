@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Cliente {
-  cod_cliente   Int           @id @unique
+  cod_cliente   Int           @id @unique @default(autoincrement())
   cpf           String        @unique
   nome          String
   sexo          String

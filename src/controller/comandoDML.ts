@@ -104,7 +104,7 @@ class ComandoDML {
       await prisma.tipo_sinistro.create({ data: { tp_sinistro: 7, desc_sinistro: 'Incêndio' } });
       await prisma.tipo_sinistro.create({ data: { tp_sinistro: 8, desc_sinistro: 'Dano Elétrico' } });
       await prisma.tipo_sinistro.create({ data: { tp_sinistro: 9, desc_sinistro: 'Desgaste' } });
-      await prisma.tipo_sinistro.create({ data: { tp_sinistro: 10, desc_sinistro: 'Defeito de Fábrica' }});
+      await prisma.tipo_sinistro.create({ data: { tp_sinistro: 10, desc_sinistro: 'Defeito de Fábrica' } });
 
       await prisma.sinistro.create({ data: { cod_sinistro: 1, cod_dispositivo: 1, tp_sinistro: 1, dt_sinistro: new Date('2023-10-01') }, });
       await prisma.sinistro.create({ data: { cod_sinistro: 2, cod_dispositivo: 2, tp_sinistro: 2, dt_sinistro: new Date('2022-06-01') }, });
@@ -215,29 +215,34 @@ class ComandoDML {
   }
 
   public async validarDados(req: Request, res: Response) {
-    const clientes = await prisma.cliente.findMany();
-    const modelos = await prisma.modelo.findMany();
-    const marcas = await prisma.marca.findMany();
-    const dispositivos = await prisma.dispositivo.findMany();
-    const planos = await prisma.plano.findMany();
-    const seguros = await prisma.seguro.findMany();
-    const tiposSinistro = await prisma.tipo_sinistro.findMany();
-    const sinistros = await prisma.sinistro.findMany();
-    const historicoCliente = await prisma.historicoCliente.findMany();
+    try {
+      const clientes = await prisma.cliente.findMany();
+      const modelos = await prisma.modelo.findMany();
+      const marcas = await prisma.marca.findMany();
+      const dispositivos = await prisma.dispositivo.findMany();
+      const planos = await prisma.plano.findMany();
+      const seguros = await prisma.seguro.findMany();
+      const tiposSinistro = await prisma.tipo_sinistro.findMany();
+      const sinistros = await prisma.sinistro.findMany();
+      const historicoCliente = await prisma.historicoCliente.findMany();
 
-    const data = {
-      clientes,
-      historicoCliente,
-      modelos,
-      marcas,
-      dispositivos,
-      planos,
-      seguros,
-      tiposSinistro,
-      sinistros,
+      const data = {
+        clientes,
+        historicoCliente,
+        modelos,
+        marcas,
+        dispositivos,
+        planos,
+        seguros,
+        tiposSinistro,
+        sinistros,
+      }
+
+      return res.send(data)
+    } catch (error) {
+      return res.send(error)
     }
-    
-    return res.send(data)
+
   }
 }
 
