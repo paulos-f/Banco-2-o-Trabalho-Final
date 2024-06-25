@@ -17,8 +17,8 @@ router.post('/triggers/criaTriggerAoEditarCliente', trigger.criaTriggerAoEditarC
 
 router.put('/clientes/update', cliente.update);
 
-router.get('/function1', function1.modeloSinistroCausa);
+router.post('/function1', function1.modeloSinistroCausa);
 
-router.get('/function2', function2.sinistroPlanoTaxa);
+router.post('/function2', function2.sinistroPlanoTaxa);
 
 export { router };
