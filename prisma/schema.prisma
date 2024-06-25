@@ -82,11 +82,13 @@ model HistoricoClien {
   cod_cliente   Int
   cpf           String
   nome          String
-  sexo          String
+  sexo          String?
   dt_nascimento DateTime
   dt_cadastro   DateTime
   num_contato   String
-  email         String
+  email         String?
   endereco      String
-}
+  cliente       Cliente  @relation(fields: [cod_cliente], references: [cod_cliente])
 
+  @@id([dt_insercao, cod_cliente])  // Definindo a chave primária composta
+}
