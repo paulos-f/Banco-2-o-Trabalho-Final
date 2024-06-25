@@ -5,6 +5,6 @@ const router = Router();
 
 router.post('/popularBanco', comandoDML.popularBanco);
 router.get('/validarDados', comandoDML.validarDados);
-router.post('/triggers', comandoDML.triggers);
+router.post('/triggers', trigger.triggers);
 
 export { router };
