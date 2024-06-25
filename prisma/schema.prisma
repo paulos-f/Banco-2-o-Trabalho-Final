@@ -75,3 +75,18 @@ model Sinistro {
   tipo_sinistro   Tipo_sinistro @relation(fields: [tp_sinistro], references: [tp_sinistro])
   dispositivo     Dispositivo   @relation(fields: [cod_dispositivo], references: [cod_dispositivo])
 }
+
+model HistoricoClien {
+  dt_insercao   DateTime
+  nm_usuario    String
+  cod_cliente   Int
+  cpf           String
+  nome          String
+  sexo          String
+  dt_nascimento DateTime
+  dt_cadastro   DateTime
+  num_contato   String
+  email         String
+  endereco      String
+}
+
