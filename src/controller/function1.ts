@@ -9,8 +9,8 @@ class Function1 {
       await prisma.$executeRawUnsafe(`
         CREATE VIEW modelo_sinistro_causa AS
         WITH SinistroData AS (
-            SELECT 
-                m.nm_modelo, 
+            SELECT
+                m.nm_modelo,
                 COUNT(s.cod_sinistro) AS qtd_sinistros,
                 (SELECT ts.desc_sinistro
                 FROM sinistro s2

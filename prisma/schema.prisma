@@ -26,6 +26,7 @@ model Modelo {
   nm_modelo   String
   marca       Marca[]
   dispositivo Dispositivo[]
+  @@index([cod_modelo()])
 }
 
 model Marca {
@@ -59,12 +60,14 @@ model Seguro {
   cod_plano   Int      @unique
   plano       Plano    @relation(fields: [cod_plano], references: [cod_plano])
   cliente     Cliente  @relation(fields: [cod_cliente], references: [cod_cliente])
+  @@index([cod_seguro()])
 }
 
 model Tipo_sinistro {
   tp_sinistro   Int       @id @unique
   desc_sinistro String
   sinistro      Sinistro?
+  @@index([tp_sinistro()])
 }
 
 model Sinistro {
